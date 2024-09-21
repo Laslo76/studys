@@ -4,8 +4,7 @@ def get_multiplied_digits(number: int = 0) -> int:
     if len(str_number) < 2:
         return int(str_number[0])
     else:
-        first = int(str_number[0])
-        return first * get_multiplied_digits(int(str_number[1:]))
+        return int(str_number[0]) * get_multiplied_digits(int(str_number[1:]))
 
 
 print(get_multiplied_digits(44))
