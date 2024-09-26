@@ -1,5 +1,5 @@
 # Bogushev V.V.
-def calculate_structure_sum(data_):
+def calculate_structure_sum(data_, res=0):
     if type(data_) in (int, float, bool):
         return data_
     elif type(data_) is str:
@@ -7,7 +7,6 @@ def calculate_structure_sum(data_):
     elif type(data_) is dict:
         return calculate_structure_sum(list(data_.items()))
     elif type(data_) in (tuple, list, set):
-        res = 0
         for i in data_:
             res += calculate_structure_sum(i)
         return res
