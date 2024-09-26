@@ -1,33 +1,23 @@
 # Bogushev V.V.
-def calculate_structure_sum(data_structure) -> int:
-    res = 0
-    if type(data_structure) in (int, float):
-        return data_structure
-    elif type(data_structure) is str:
-        return len(data_structure)
-    elif type(data_structure) is bool:
-        if data_structure:
-            return 1
-        else:
-            return 0
-    elif type(data_structure) in (tuple, list, set):
-        for i in data_structure:
+def calculate_structure_sum(data_):
+    if type(data_) in (int, float, bool):
+        return data_
+    elif type(data_) is str:
+        return len(data_)
+    elif type(data_) is dict:
+        return calculate_structure_sum(list(data_.items()))
+    elif type(data_) in (tuple, list, set):
+        res = 0
+        for i in data_:
             res += calculate_structure_sum(i)
         return res
-    elif type(data_structure) is dict:
-        for ikey, ivalue in data_structure.items():
-            res += calculate_structure_sum(ikey)
-            res += calculate_structure_sum(ivalue)
-        return res
     else:
-        raise Exception('Ошибка Типов!')
+        raise Exception(f'Ошибка Типов! Нельзя обработать {type(data_)}.')
 
 
-data_structure = [
-                    [1, 2, 3],
-                    {'a': 4, 'b': 5},
-                    (6, {'cube': 7, 'drum': 8}),
-                    "Hello",
-                    ((), [{(2, 'Urban', ('Urban2', 35))}])]
-result = calculate_structure_sum(data_structure)
-print(result)
+data_structure = [[1, 2, 3],
+                  {'a': 4, 'b': 5},
+                  (6, {'cube': 7, 'drum': 8}),
+                  "Hello",
+                  ((), [{(2, 'Urban', ('Urban2', 35))}])]
+print(calculate_structure_sum(data_structure))
