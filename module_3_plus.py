@@ -15,10 +15,9 @@ def calculate_structure_sum(data_structure) -> int:
             res += calculate_structure_sum(i)
         return res
     elif type(data_structure) is dict:
-        for i in data_structure.keys():
-            res += calculate_structure_sum(i)
-        for i in data_structure.values():
-            res += calculate_structure_sum(i)
+        for ikey, ivalue in data_structure.items():
+            res += calculate_structure_sum(ikey)
+            res += calculate_structure_sum(ivalue)
         return res
     else:
         raise Exception('Ошибка Типов!')
