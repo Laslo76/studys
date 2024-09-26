@@ -1,7 +1,7 @@
 # Bogushev V.V.
 def calculate_structure_sum(data_structure) -> int:
     res = 0
-    if type(data_structure) is int:
+    if type(data_structure) in (int, float):
         return data_structure
     elif type(data_structure) is str:
         return len(data_structure)
