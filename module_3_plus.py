@@ -5,6 +5,11 @@ def calculate_structure_sum(data_structure) -> int:
         return data_structure
     elif type(data_structure) is str:
         return len(data_structure)
+    elif type(data_structure) is bool:
+        if data_structure:
+            return 1
+        else:
+            return 0
     elif type(data_structure) in (tuple, list, set):
         for i in data_structure:
             res += calculate_structure_sum(i)
