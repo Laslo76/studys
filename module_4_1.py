@@ -6,6 +6,7 @@ result1 = f_div(69, 3)
 result2 = f_div(3, 0)
 result3 = t_div(49, 7)
 result4 = t_div(15, 0)
+
 print(result1)
 print(result2)
 print(result3)
