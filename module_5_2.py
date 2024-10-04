@@ -21,3 +21,11 @@ h2 = House('Домик в деревне', 2)
 
 h1.go_to(5)
 h2.go_to(10)
+
+# __str__
+print(h1)
+print(h2)
+
+# __len__
+print(len(h1))
+print(len(h2))
