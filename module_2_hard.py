@@ -1,5 +1,4 @@
 # Bogushev V.V.
-
 while True:
     key_number = int(input("Введите число от 3 до 20: "))
     if (key_number > 2) and (key_number < 21):
