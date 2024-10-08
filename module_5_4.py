@@ -26,49 +26,76 @@ class House:
         return f'Название: {self.name}, кол-во этажей: {self.number_of_floors}'
 
     def __eq__(self, other):
-        if not isinstance(other, House):
+        if isinstance(other, House):
+            return self.number_of_floors == other.number_of_floors
+        elif isinstance(other, int):
+            return self.number_of_floors == other
+        else:
             raise Exception(f'Нельзя сравнивать объекты различных типов!')
-        return self.number_of_floors == other.number_of_floors
 
     def __lt__(self, other):
-        if not isinstance(other, House):
+        if isinstance(other, House):
+            return self.number_of_floors < other.number_of_floors
+        elif isinstance(other, int):
+            return self.number_of_floors < other
+        else:
             raise Exception(f'Нельзя сравнивать объекты различных типов!')
-        return self.number_of_floors < other.number_of_floors
 
     def __le__(self, other):
-        if not isinstance(other, House):
+        if isinstance(other, House):
+            return self.number_of_floors <= other.number_of_floors
+        elif isinstance(other, int):
+            return self.number_of_floors <= other
+        else:
             raise Exception(f'Нельзя сравнивать объекты различных типов!')
-        return self.number_of_floors <= other.number_of_floors
 
     def __gt__(self, other):
-        if not isinstance(other, House):
+        if isinstance(other, House):
+            return self.number_of_floors > other.number_of_floors
+        elif isinstance(other, int):
+            return self.number_of_floors > other
+        else:
             raise Exception(f'Нельзя сравнивать объекты различных типов!')
-        return self.number_of_floors > other.number_of_floors
 
     def __ge__(self, other):
-        if not isinstance(other, House):
+        if isinstance(other, House):
+            return self.number_of_floors >= other.number_of_floors
+        elif isinstance(other, int):
+            return self.number_of_floors >= other
+        else:
             raise Exception(f'Нельзя сравнивать объекты различных типов!')
-        return self.number_of_floors >= other.number_of_floors
 
     def __ne__(self, other):
-        if not isinstance(other, House):
+        if isinstance(other, House):
+            return self.number_of_floors != other.number_of_floors
+        elif isinstance(other, int):
+            return self.number_of_floors != other
+        else:
             raise Exception(f'Нельзя сравнивать объекты различных типов!')
-        return self.number_of_floors != other.number_of_floors
 
     def __add__(self, value):
-        if not isinstance(value, int):
+        if isinstance(value, int):
+            if value < 0:
+                raise Exception(f'Количество этажей должно быть целым, положительным числом!')
+            else:
+                add_floors = value
+        elif isinstance(value, House):
+            add_floors = value.number_of_floors
+        else:
             raise Exception(f'Количество этажей должно быть целым, положительным числом!')
-        if value < 0:
-            raise Exception(f'Количество этажей должно быть целым, положительным числом!')
-        self.number_of_floors += value
+        self.number_of_floors += add_floors
         return self
 
     def __radd__(self, value):
-        if not isinstance(value, int):
-            raise Exception(f'Количество этажей должно быть целым, положительным числом!')
-        if value < 0:
-            raise Exception(f'Количество этажей должно быть целым, положительным числом!')
-        self.number_of_floors += value
+        if not (isinstance(value, int) or isinstance(value, House)):
+            raise Exception(f'Количество этажей должно быть целым, положительным числом или House!')
+        if isinstance(value, int):
+            if value < 0:
+                raise Exception(f'Количество этажей должно быть целым, положительным числом!')
+            add_floors = value
+        else:
+            add_floors = value.number_of_floors
+        self.number_of_floors += add_floors
         return self
 
     def __iadd__(self, value):
