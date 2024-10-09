@@ -2,9 +2,10 @@
 class Figure:
     side_count = 0
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        __colors = args[0]
         __sides = []
-        __colors = []
+
         field = False
 
     def get_color(self):
