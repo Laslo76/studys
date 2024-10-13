@@ -30,7 +30,7 @@ class Video:
     """
     Video - класс видео объектов в системе.
     Обладает атрибутами:
-    title - заголовк,
+    title - заголовок,
     duration - продолжительность,
     time_now - текущее время просмотра,
     adult_mode - ограничения по возрасту.
@@ -85,8 +85,8 @@ class UrTube:
         for args_item in args:
             self.videos.append(args_item)
 
-    def get_videos(self, search_video, retur_title=True):
-        if retur_title:
+    def get_videos(self, search_video, return_title=True):
+        if return_title:
             return [video.title for video in self.videos if video.title.upper().find(search_video.upper()) > -1]
         else:
             return [video for video in self.videos if video.title.upper().find(search_video.upper()) > -1]
@@ -95,7 +95,7 @@ class UrTube:
         if self.current_user is None:
             print("Войдите в аккаунт, чтобы смотреть видео.")
             return
-        for current_video in self.get_videos(name_video, retur_title=False):
+        for current_video in self.get_videos(name_video, return_title=False):
             if current_video.adult_mode:
                 if self.current_user.age < 18:
                     print(f'Вам нет 18 лет, пожалуйста покиньте страницу!')
