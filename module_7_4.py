@@ -42,11 +42,13 @@ if __name__ == "__main__":
         "ничья"
 
     print("В команде Мастера кода %s: %d !" % (num_postfix(team1_num, "участник"), team1_num))
-    print("Итого сегодня в обеих командах %s: %d и %d" % (num_postfix(team2_num, "участник"), team1_num, team2_num))
+    print("Итого сегодня в обеих командах %s: %d и %d" % (num_postfix(team2_num, "участник"),
+                                                          team1_num, team2_num))
 
     print("Команда Волшебники данных решила {} {}".format(score_2, num_postfix(score_2, "задача")))
     print("Волшебники данных решили {} за {} с !".format(num_postfix(score_2, "задача"), team2_time))
 
     print(f"Команды решили {score_1} и {score_2} {num_postfix(score_2, 'задача')}.")
     print(f"Результат битвы: {challenge_result}!")
-    print(f"Сегодня было решено {tasks_total} {num_postfix(tasks_total, "задача")}, в среднем по  {time_avg} секунды на задачу!")
+    print(f"Сегодня было решено {tasks_total} {num_postfix(tasks_total, "задача")},\n"
+          f" в среднем по  {time_avg} секунды на задачу!")
