@@ -8,6 +8,7 @@ def personal_summ(numbers) -> tuple:
             try:
                 result += number
             except TypeError:
+                print(f'Некорректный тип данных для подсчёта суммы - {number}')
                 incorrect_data += 1
     except TypeError:
         raise TypeError
@@ -16,12 +17,16 @@ def personal_summ(numbers) -> tuple:
 
 def calculate_average(numbers):
     try:
-        result = personal_summ(numbers)[0] / len(numbers)
+        summator = personal_summ(numbers)
+        count_obj = len(numbers)
+        result = summator[0] / (count_obj - summator[1])
     except ZeroDivisionError as exp:
-        return 0
+        result = 0
     except TypeError as exp:
         print(f'В numbers записан некорректный тип данных!')
-        return None
+        result = None
+    return result
+
 
 if __name__ == '__main__':
     print(f'Результат 1: {calculate_average("1, 2, 3")}')  # Строка перебирается, но каждый символ - строковый тип
