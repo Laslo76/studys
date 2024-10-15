@@ -20,9 +20,9 @@ def calculate_average(numbers):
         summator = personal_summ(numbers)
         count_obj = len(numbers)
         result = summator[0] / (count_obj - summator[1])
-    except ZeroDivisionError as exp:
+    except ZeroDivisionError:
         result = 0
-    except TypeError as exp:
+    except TypeError:
         print(f'В numbers записан некорректный тип данных!')
         result = None
     return result
