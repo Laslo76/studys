@@ -3,20 +3,13 @@
 def is_prime(function):
     def wrapper(*args, **kwargs):
         result = function(*args, **kwargs)
-        if result in [0, 1]:
-            prime = True
-        elif result < 0:
-            prime = True
-            for i in range(result+1, -2):
-                prime = result % i != 0
-                if not prime:
-                    break
-        else:
-            prime = True
-            for i in range(2, result):
-                prime = result % i != 0
-                if not prime:
-                    break
+        prime = True
+        if not result in [-2, -1, 0, 1, 2]:
+            point = min(result + 1, 2)
+            fin = max(-2, result)
+            while point < fin and prime:
+                prime = result % point != 0
+                point += 1
         if prime:
             print('Простое')
         else:
@@ -31,5 +24,5 @@ def sum_three(first, second, third):
 
 
 if __name__ == '__main__':
-    result = sum_three(-97, -2, 2)
+    result = sum_three(2, -2, 2)
     print(result)
