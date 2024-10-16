@@ -4,7 +4,7 @@ def is_prime(function):
     def wrapper(*args, **kwargs):
         result = function(*args, **kwargs)
         prime = True
-        if not result in [-2, -1, 0, 1, 2]:
+        if result not in [-2, -1, 0, 1, 2]:
             point = min(result + 1, 2)
             fin = max(-2, result)
             while point < fin and prime:
