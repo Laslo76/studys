@@ -24,5 +24,5 @@ def sum_three(first, second, third):
 
 
 if __name__ == '__main__':
-    result = sum_three(2, -2, 2)
+    result = sum_three(2, 3, 6)
     print(result)
