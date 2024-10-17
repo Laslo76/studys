@@ -7,13 +7,13 @@ from threading import Thread
 class Knight(Thread):
     def __init__(self, name, power):
         super().__init__()
+        self.day_combat = 0
         self.name = name
         self.power = power
         self.warriors = 100
 
     def run(self):
         print(f'{self.name}, на нас напали!')
-        self.day_combat = 0
         while self.warriors > 0:
             self.day_combat += 1
             self.warriors -= self.power
