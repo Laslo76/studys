@@ -1,6 +1,7 @@
 import multiprocessing
 import datetime
 
+
 def worker(data):
     result = data ** 2
     return result
