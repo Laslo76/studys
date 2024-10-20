@@ -13,7 +13,7 @@ class RunnerTest(unittest.TestCase):
     @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_walk(self):
         try:
-            data = ['Michel', 2]
+            data = ['Michel', 7]
             test_one = cls_runner.Runner(*data)
         except TypeError as er:
             logging.error(f"Ошибка создания бегуна. {er}.")
