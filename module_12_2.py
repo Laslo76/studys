@@ -3,6 +3,7 @@ import runner
 
 
 class TournamentTest(unittest.TestCase):
+    is_frozen = True
     all_results = []
 
     @classmethod
@@ -18,10 +19,11 @@ class TournamentTest(unittest.TestCase):
     def tearDownClass(cls):
         for tour in TournamentTest.all_results:
             print(tour)
-            for place, runner in tour.items():
-                print(f'{place}: {runner}', end=',')
+            for place, print_runner in tour.items():
+                print(f'{place}: {print_runner}', end=',')
             print()
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tournament(self):
         runners_list = [self.runner_one, self.runner_thr]
         tour1 = runner.Tournament(90, *runners_list)
