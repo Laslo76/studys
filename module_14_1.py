@@ -10,11 +10,11 @@ def fill_table_user(cursor_work):
 
 
 def update_balance(cursor_work):
-    cursor.execute("UPDATE User SET balance = ? WHERE id % 2 <> 0", (500,))
+    cursor_work.execute("UPDATE User SET balance = ? WHERE id % 2 <> 0", (500,))
 
 
 def delete_3(cursor_work):
-    cursor.execute("DELETE FROM User WHERE (id+2) % 3 = 0")
+    cursor_work.execute("DELETE FROM User WHERE (id+2) % 3 = 0")
 
 
 if __name__ == '__main__':
