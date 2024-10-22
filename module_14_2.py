@@ -22,7 +22,7 @@ def delete_id(cursor_work, cur_id: int):
 
 
 if __name__ == '__main__':
-    db = sqlite3.connect("not_telegram.db")
+    db = sqlite3.connect("not_telegram_14_2.db")
     cursor = db.cursor()
 
     cursor.execute("""
