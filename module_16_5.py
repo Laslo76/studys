@@ -44,11 +44,6 @@ async def get_users(user_id: int, request: Request) -> HTMLResponse:
         raise HTTPException(status_code=404, detail="User was not found")
 
 
-@app.get("/users")
-async def get_users(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("users.html", {"request": request, "users": users})
-
-
 @app.post('/user/{username}/{age}')
 async def add_user(user: User, request: Request) -> HTMLResponse:
     try:
@@ -65,16 +60,16 @@ async def update_user(user_id: int, username: str, age: int, request: Request) -
         edit_user = find_user(user_id, users)
         edit_user.username = username
         edit_user.age = age
-        return templates.TemplateResponse("main.html", {"request": request, "user": edit_user})
+        return templates.TemplateResponse("users.html", {"request": request, "user": edit_user})
     except IndexError:
         raise HTTPException(status_code=404, detail="User was not found")
 
 
 @app.delete("/user/{user_id}")
-async def delete_user(user_id: int) -> User:
+async def delete_user(user_id: int, request: Request) -> HTMLResponse:
     try:
         index_users = find_user(user_id, users, True)
         del_user = users.pop(index_users)
-        return del_user
+        return templates.TemplateResponse("users.html", {"request": request, "users": users})
     except IndexError:
         raise HTTPException(status_code=404, detail="User was not found")

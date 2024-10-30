@@ -3,11 +3,10 @@
 
     {% if user %}
         <section class="container-fluid">
-            <h2 align="center"> COOL </h2>
+            <h1> ID: {{user.id}}</h1>
+            <p>Name: {{user.username}}</p>
             <br>
-            <h3>{{user.username}}</h3>
-            <br>
-            <p>ID: {{user.id}} age: {{user.age}}</p>
+            <p>Age: {{user.age}}</p>
         </section>
     {% else %}
             <section class="container-fluid">
