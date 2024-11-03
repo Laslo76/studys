@@ -3,26 +3,21 @@ from pydantic import BaseModel
 from typing import List
 
 
+app = FastAPI()
+
+users = []
+
+
 class User(BaseModel):
     id: int
     username: str
     age: int
 
 
-users = list()
-
-app = FastAPI()
-
-
-def find_user(find_id: int, users: User, ret_index=False) -> User:
-    ind = 0
-    for us in users:
-        if us.id == find_id:
-            if ret_index:
-                return ind
-            else:
-                return us
-        ind += 1
+def find_user(find_id: int, ind=0):
+    for i in range(ind, len(users)):
+        if users[i].id == find_id:
+            return i
     raise IndexError
 
 
@@ -32,11 +27,14 @@ async def get_users() -> List[User]:
 
 
 @app.post('/user/{username}/{age}')
-async def add_user(user: User) -> User:
+async def add_user(username: str, age: int, user: User) -> User:
     try:
-        user.id = users[-1].id + 1
+        user_id = users[-1].id + 1
     except IndexError:
-        user.id = 1
+        user_id = 1
+    user.id = user_id
+    user.username = username
+    user.age = age
     users.append(user)
     return user
 
@@ -44,7 +42,7 @@ async def add_user(user: User) -> User:
 @app.put('/user/{user_id}/{username}/{age}')
 async def update_user(user_id: int, username: str, age: int) -> User:
     try:
-        edit_user = find_user(user_id, users)
+        edit_user = users[find_user(user_id)]
         edit_user.username = username
         edit_user.age = age
         return edit_user
@@ -55,7 +53,7 @@ async def update_user(user_id: int, username: str, age: int) -> User:
 @app.delete("/user/{user_id}")
 async def delete_user(user_id: int) -> User:
     try:
-        index_users = find_user(user_id, users, True)
+        index_users = find_user(user_id)
         del_user = users.pop(index_users)
         return del_user
     except IndexError:
