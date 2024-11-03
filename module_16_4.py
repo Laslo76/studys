@@ -27,14 +27,12 @@ async def get_users() -> List[User]:
 
 
 @app.post('/user/{username}/{age}')
-async def add_user(username: str, age: int, user: User) -> User:
+async def add_user(username: str, age: int) -> User:
     try:
         user_id = users[-1].id + 1
     except IndexError:
         user_id = 1
-    user.id = user_id
-    user.username = username
-    user.age = age
+    user = User(id=user_id, username=username, age=age)
     users.append(user)
     return user
 
